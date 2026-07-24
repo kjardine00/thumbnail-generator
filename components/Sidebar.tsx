@@ -81,9 +81,18 @@ export function Sidebar({
   return (
     <aside className="flex h-full w-full flex-col border-r border-[#2a2f3a] bg-[#1a1d26] text-zinc-100 md:w-80 md:shrink-0">
       <div className="border-b border-[#2a2f3a] px-5 py-4">
-        <h1 className="mt-1 font-[family-name:var(--font-display)] text-2xl tracking-tight text-zinc-50">
-          Thumbnail Generator
-        </h1>
+        <div className="flex items-center gap-2.5">
+          <img
+            src="/scan-eye.svg"
+            alt=""
+            width={28}
+            height={28}
+            className="shrink-0"
+          />
+          <h1 className="font-[family-name:var(--font-display)] text-2xl tracking-tight text-zinc-50">
+            Thumbnail Generator
+          </h1>
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 py-5">
