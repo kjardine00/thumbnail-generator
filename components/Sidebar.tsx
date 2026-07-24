@@ -30,14 +30,14 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-1.5 text-sm">
-      <span className="font-medium text-stone-700">{label}</span>
+      <span className="font-medium text-zinc-300">{label}</span>
       {children}
     </label>
   );
 }
 
 const inputClass =
-  "w-full rounded-md border border-stone-300 bg-white px-2.5 py-1.5 text-sm text-stone-900 outline-none focus:border-stone-500 focus:ring-1 focus:ring-stone-400";
+  "w-full rounded-md border border-[#3a4150] bg-[#0f1117] px-2.5 py-1.5 text-sm text-zinc-100 outline-none focus:border-zinc-400 focus:ring-1 focus:ring-zinc-500";
 
 export function Sidebar({
   config,
@@ -79,16 +79,16 @@ export function Sidebar({
   );
 
   return (
-    <aside className="flex h-full w-full flex-col border-r border-stone-200 bg-[#f7f4ef] text-stone-900 md:w-80 md:shrink-0">
-      <div className="border-b border-stone-200 px-5 py-4">
-        <h1 className="mt-1 font-[family-name:var(--font-display)] text-2xl tracking-tight text-stone-900">
+    <aside className="flex h-full w-full flex-col border-r border-[#2a2f3a] bg-[#1a1d26] text-zinc-100 md:w-80 md:shrink-0">
+      <div className="border-b border-[#2a2f3a] px-5 py-4">
+        <h1 className="mt-1 font-[family-name:var(--font-display)] text-2xl tracking-tight text-zinc-50">
           Thumbnail Generator
         </h1>
       </div>
 
       <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 py-5">
         <section className="flex flex-col gap-3">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
             Canvas
           </h2>
 
@@ -144,7 +144,7 @@ export function Sidebar({
           <Field label="Background">
             <input
               type="color"
-              className="h-9 w-full cursor-pointer rounded-md border border-stone-300 bg-white p-1"
+              className="h-9 w-full cursor-pointer rounded-md border border-[#3a4150] bg-[#0f1117] p-1"
               value={canvas.backgroundColor}
               onChange={(e) => patchCanvas({ backgroundColor: e.target.value })}
             />
@@ -152,7 +152,7 @@ export function Sidebar({
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
             Shapes
           </h2>
           {SHAPE_TYPES.map((type) => (
@@ -206,13 +206,13 @@ export function Sidebar({
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
             Stroke
           </h2>
           <Field label="Color">
             <input
               type="color"
-              className="h-9 w-full cursor-pointer rounded-md border border-stone-300 bg-white p-1"
+              className="h-9 w-full cursor-pointer rounded-md border border-[#3a4150] bg-[#0f1117] p-1"
               value={style.strokeColor}
               onChange={(e) => patchStyle({ strokeColor: e.target.value })}
             />
@@ -220,13 +220,13 @@ export function Sidebar({
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-stone-500">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
             View
           </h2>
-          <label className="flex cursor-pointer items-center gap-2.5 text-sm text-stone-800">
+          <label className="flex cursor-pointer items-center gap-2.5 text-sm text-zinc-200">
             <input
               type="checkbox"
-              className="size-4 accent-stone-800"
+              className="size-4 accent-zinc-100"
               checked={canvas.showOverflow}
               onChange={(e) => patchCanvas({ showOverflow: e.target.checked })}
             />
@@ -235,16 +235,16 @@ export function Sidebar({
         </section>
       </div>
 
-      <div className="flex flex-col gap-2 border-t border-stone-200 px-5 py-4">
+      <div className="flex flex-col gap-2 border-t border-[#2a2f3a] px-5 py-4">
         {exportError && (
-          <p className="text-xs leading-relaxed text-red-700" role="alert">
+          <p className="text-xs leading-relaxed text-red-400" role="alert">
             {exportError}
           </p>
         )}
         <button
           type="button"
           onClick={onShuffle}
-          className="rounded-md bg-stone-900 px-3 py-2.5 text-sm font-medium text-white transition hover:bg-stone-700"
+          className="rounded-md bg-zinc-100 px-3 py-2.5 text-sm font-medium text-zinc-900 transition hover:bg-white"
         >
           Shuffle shapes
         </button>
@@ -252,7 +252,7 @@ export function Sidebar({
           type="button"
           onClick={onExport}
           disabled={shapeCount === 0 || exporting || tooLarge}
-          className="rounded-md border border-stone-300 bg-white px-3 py-2.5 text-sm font-medium text-stone-900 transition hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-md border border-[#3a4150] bg-[#0f1117] px-3 py-2.5 text-sm font-medium text-zinc-100 transition hover:border-zinc-500 hover:bg-[#161a22] disabled:cursor-not-allowed disabled:opacity-40"
         >
           {exporting ? "Exporting…" : "Export PNG"}
         </button>

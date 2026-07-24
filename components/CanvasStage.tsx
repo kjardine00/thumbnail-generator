@@ -153,7 +153,7 @@ export function CanvasStage({ canvas, shapes, onShapesChange }: CanvasStageProps
           width={displayW}
           height={displayH}
           viewBox={`${-pad} ${-pad} ${viewW} ${viewH}`}
-          className={`max-h-full max-w-full touch-none shadow-[0_12px_40px_rgba(0,0,0,0.18)] ${
+          className={`max-h-full max-w-full touch-none shadow-[0_16px_48px_rgba(0,0,0,0.55)] ${
             draggingId ? "cursor-grabbing" : hoverId ? "cursor-grab" : "cursor-default"
           }`}
           role="img"
@@ -178,7 +178,7 @@ export function CanvasStage({ canvas, shapes, onShapesChange }: CanvasStageProps
               y={-pad}
               width={viewW}
               height={viewH}
-              fill="#d4d0c8"
+              fill="#2a2f3a"
             />
           )}
 

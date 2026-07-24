@@ -13,8 +13,8 @@ const sans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Shape Canvas",
-  description: "Randomly place shape outlines and export print-ready PNGs.",
+  title: "Thumbnail Generator",
+  description: "Randomly place shape outlines and export PNGs.",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-sans text-stone-900">{children}</body>
+      <body className="min-h-full bg-background font-sans text-foreground">{children}</body>
     </html>
   );
 }
