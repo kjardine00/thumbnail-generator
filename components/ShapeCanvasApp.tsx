@@ -80,6 +80,16 @@ export function ShapeCanvasApp() {
 
   const count = totalQuantity(config.quantities);
 
+  // Same markup on the server and the client's first paint — avoids hydration
+  // mismatches from client-only shape generation and boolean DOM attrs.
+  if (!ready) {
+    return (
+      <div className="flex h-dvh min-h-0 items-center justify-center bg-[#ebe6dc] text-sm text-stone-500">
+        Preparing canvas…
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-dvh min-h-0 flex-col md:flex-row">
       <Sidebar
@@ -92,11 +102,7 @@ export function ShapeCanvasApp() {
         onExport={handleExport}
       />
       <main className="relative min-h-[50vh] flex-1 bg-[#ebe6dc] p-4 md:min-h-0 md:p-8">
-        {!ready ? (
-          <div className="flex h-full items-center justify-center text-sm text-stone-500">
-            Preparing canvas…
-          </div>
-        ) : shapes.length === 0 && count === 0 ? (
+        {shapes.length === 0 && count === 0 ? (
           <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
             <p className="text-stone-600">Set a shape quantity, then shuffle.</p>
             <button
