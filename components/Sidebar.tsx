@@ -59,7 +59,10 @@ export function Sidebar({
   const patchQuantities = (type: ShapeType, value: number) =>
     onChange({
       ...config,
-      quantities: { ...quantities, [type]: Math.max(0, value) },
+      quantities: {
+        ...quantities,
+        [type]: Math.min(20, Math.max(1, Math.floor(value))),
+      },
     });
 
   const patchStyle = (partial: Partial<AppConfig["style"]>) =>
@@ -164,21 +167,27 @@ export function Sidebar({
           <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500">
             Shapes
           </h2>
-          {SHAPE_TYPES.map((type) => (
-            <Field key={type} label={SHAPE_LABELS[type]}>
-              <input
-                type="number"
-                min={0}
-                max={200}
-                step={1}
-                className={inputClass}
-                value={quantities[type]}
-                onChange={(e) =>
-                  patchQuantities(type, Math.floor(Number(e.target.value) || 0))
-                }
-              />
-            </Field>
-          ))}
+          {SHAPE_TYPES.map((type) => {
+            const value = Math.min(20, Math.max(1, quantities[type] || 1));
+            return (
+              <label key={type} className="flex flex-col gap-1.5 text-sm">
+                <span className="flex items-center justify-between font-medium text-zinc-300">
+                  <span>{SHAPE_LABELS[type]}</span>
+                  <span className="tabular-nums text-zinc-400">{value}</span>
+                </span>
+                <input
+                  type="range"
+                  min={1}
+                  max={20}
+                  step={1}
+                  value={value}
+                  onChange={(e) => patchQuantities(type, Number(e.target.value))}
+                  className="h-2 w-full cursor-pointer appearance-none rounded-full bg-[#0f1117] accent-zinc-100"
+                  aria-label={`${SHAPE_LABELS[type]} count`}
+                />
+              </label>
+            );
+          })}
 
           <div className="grid grid-cols-2 gap-3">
             <Field label="Min size (in)">
